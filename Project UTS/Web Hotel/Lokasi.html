@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hotel IXI - Kamar</title>
+<style>
+    body {
+      font-family: Arial, sans-serif;
+      background: url('img/lobby2.jpg') no-repeat center center fixed;
+      background-size: cover;
+    }
+
+    .menu {
+      background-color:rgba(0, 0, 0, 0.4);
+      color: white;
+      padding: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .menu label {
+      font-size: 20px;
+      font-weight: bold;
+      color: #f5e6ca; /* Light champagne color */
+      font-family: 'Georgia', serif;
+    }
+
+    .menu ul {
+      list-style: none;
+      display: flex;
+      gap: 15px;
+      padding: 0;
+      margin: 0;
+    }
+
+    .menu ul li {
+      position: relative;
+    }
+
+    .menu ul li a {
+      color: #f5e6ca;
+      text-decoration: none;
+      padding: 8px 12px;
+      display: block;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+      font-weight: bold;
+    }
+
+    .menu ul > li > a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #ffd70f;
+}
+.dropdown {
+    display: none;
+    position: absolute;
+    top: calc(100% + 20px);
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.6); /* Transparan hitam */
+    border-radius: 5px;
+    min-width: 160px;
+    z-index: 1000;
+    padding: 10px 0;
+    flex-direction: column;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* Show dropdown only when hovering */
+.menu ul > li:hover .dropdown {
+    display: flex;
+    opacity: 1;
+}
+
+/* Dropdown links */
+.dropdown li a {
+    padding: 10px 20px;
+    color: #ffffff;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.3s;
+    font-weight: normal;
+}
+
+.dropdown li a:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+     color: #ffd700;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .menu {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .menu ul {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .menu ul > li {
+        width: 100%;
+    }
+
+    .menu ul > li > a {
+        width: 100%;
+    }
+
+    .dropdown {
+        position: static;
+        opacity: 1;
+        display: none;
+    }
+
+    .menu ul > li:hover .dropdown {
+        display: block;
+    }
+}
+
+.container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: auto;
+    background: #FDFBD4;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    place-items: center;
+    background-color: rgba(240, 230, 150, 0.5);
+
+
+  }
+
+ .profile-lokasi-kami {
+    max-width: 800px;
+    margin: 30px auto;
+    background: #FDFBD4;
+    color: black;
+    padding: 20px;
+    border-radius: 10px;
+    animation: fadeIn 1s ease-in-out;
+  }
+
+  .profile-container img {
+    width: 250px;
+    border-radius: 100px;
+    display: block;
+    margin: 0 auto 20px auto;
+    animation: zoomIn 1s ease;
+  }
+
+  .profile-container h2,
+  .profile-container p {
+    text-align: center;
+  }
+
+  .profile-container .bio {
+    margin-top: 20px;
+    line-height: 1.8;
+  }
+
+  .profile-container .bio p {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+  }
+
+  .profile-container .bio p a {
+    color: #4fc3f7;
+    text-decoration: none;
+  }
+
+  .profile-container .bio p a:hover {
+    text-decoration: underline;
+  }
+.footer {
+    background-color: rgba(240, 230, 150, 0.5);
+    color:black;
+    text-align: center;
+    padding: 30px 20px;
+    margin-top: 40px;
+}
+
+.footer-content p {
+    margin: 5px 0;
+    font-size: 14px;
+    color: black
+}
+  
+  </style>
+</head>    
+<body>
+    <nav class="menu">
+  <label>Hotel IXI</label>
+  <ul>
+    <li>
+      <a href="#">Tentang Kami</a>
+      <ul class="dropdown">
+        <li><a href="Profile.html">Profile</a></li>
+        <li><a href="Restoran.html">Restoran</a></li>
+        <li><a href="Fasilitas.html">Fasilitas</a></li>
+        <li><a href="Kontak.html">Kontak</a></li>
+      </ul>
+    </li>
+    <li><a href="Kamar.html">Kamar</a></li>
+    <li><a href="Event.html">Event</a></li>
+    <li><a href="Lokasi.html">Lokasi</a></li>
+    <li><a href="Profile-Programmer.html">Profile Programmer</a></li>
+  </ul>
+</nav>
+ <main>
+    <div class="container">
+        <h1>Lokasi Kami</h1>
+        <p>IXI Hotel berlokasi strategis di pusat kota, memudahkan akses ke berbagai destinasi penting dan tempat hiburan di Batam.</p>
+
+        <h2>Alamat</h2>
+        <p>Jl. PusatKotaRaya No.123, Nagoya</p>
+
+        <h2>Akses Transportasi</h2>
+        <ul>
+            <li>30 menit dari Bandara Internasional Hang Nadim</li>
+            <li>10 menit ke Pelabuhan Internasional Harbour Bay</li>
+            <li>Mudah dijangkau dengan taksi, bus, dan transportasi online</li>
+        </ul>
+
+        <h2>Peta Lokasi</h2>
+        <p>
+            <iframe 
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.037264432246!2d104.0115079749654!3d1.1337288988554135!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31d98992b176776b%3A0xf081d1383d709df8!2sBaloi%20Blok%202%20Jalan%20Nangka%20No.22!5e0!3m2!1sen!2sid!4v1747116803857!5m2!1sen!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+</p>
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2025 Hotel IXI. Semua Hak Dilindungi.</p>
+            <p>Alamat: Jl. PusatKotaRaya No.123, Nagoya</p>
+            <p>Email: info@ixihotel.com | Telepon: (0778) 123456</p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hotel IXI - Kamar</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: url('img/lobby2.jpg') no-repeat center center fixed;
+      background-size: cover;
+    }
+
+    .menu {
+      background-color:rgba(0, 0, 0, 0.4);
+      color: white;
+      padding: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .menu label {
+      font-size: 20px;
+      font-weight: bold;
+      color: #f5e6ca; /* Light champagne color */
+      font-family: 'Georgia', serif;
+    }
+
+    .menu ul {
+      list-style: none;
+      display: flex;
+      gap: 15px;
+      padding: 0;
+      margin: 0;
+    }
+
+    .menu ul li {
+      position: relative;
+    }
+
+    .menu ul li a {
+      color: #f5e6ca;
+      text-decoration: none;
+      padding: 8px 12px;
+      display: block;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+      font-weight: bold;
+    }
+
+    .menu ul > li > a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #ffd700; /* gold on hover */
+}
+.dropdown {
+    display: none;
+    position: absolute;
+    top: calc(100% + 20px);
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.6); /* Transparan hitam */
+    border-radius: 5px;
+    min-width: 160px;
+    z-index: 1000;
+    padding: 10px 0;
+    flex-direction: column;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* Show dropdown only when hovering */
+.menu ul > li:hover .dropdown {
+    display: flex;
+    opacity: 1;
+}
+
+/* Dropdown links */
+.dropdown li a {
+    padding: 10px 20px;
+    color: #ffffff;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.3s;
+    font-weight: normal;
+}
+
+.dropdown li a:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    color: #ffd700;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .menu {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .menu ul {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .menu ul > li {
+        width: 100%;
+    }
+
+    .menu ul > li > a {
+        width: 100%;
+    }
+
+    .dropdown {
+        position: static;
+        opacity: 1;
+        display: none;
+    }
+
+    .menu ul > li:hover .dropdown {
+        display: block;
+    }
+}
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      padding: 40px;
+    }
+.room-card {
+      background: white;
+      width: 360px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+
+    .carousel {
+      position: relative;
+      height: 240px;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .carousel img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      display: none;
+    }
+
+    .carousel img.active {
+      display: block;
+      position: relative; /* tambahkan */
+      z-index: 1; 
+    }
+
+    .carousel button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.5);
+      color: white;
+      border: none;
+      padding: 10px;
+      font-size: 18px;
+      cursor: pointer;
+      z-index: 10;
+    }
+
+    .carousel .prev { left: 10px; }
+    .carousel .next { right: 10px; }
+
+    .room-info {
+      padding: 20px;
+    }
+
+    .room-title {
+      font-size: 20px;
+      font-weight: bold;
+      color: #003366;
+    }
+
+    .room-size, .room-price {
+      margin: 8px 0;
+      font-size: 14px;
+    }
+
+    .room-price {
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .tax-note {
+      font-size: 12px;
+      color: gray;
+    }
+
+    .book-button, .details-button {
+      display: inline-block;
+      padding: 8px 15px;
+      margin: 8px 4px 0 0;
+      border-radius: 5px;
+      text-decoration: none;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .book-button {
+      background-color: #6c757d;
+      color: white;
+    }
+
+    .details-button {
+      background-color: #007BFF;
+      color: white;
+    }
+
+    /* MODAL STYLING */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      left: 0; top: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0,0,0,0.5);
+    }
+
+    .modal-content {
+      background: white;
+      margin: 10% auto;
+      padding: 20px;
+      width: 80%;
+      max-width: 500px;
+      border-radius: 10px;
+      position: relative;
+    }
+
+    .close {
+      position: absolute;
+      right: 15px;
+      top: 10px;
+      font-size: 20px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    /* Modal styling */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      left: 0; top: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0,0,0,0.5);
+    }
+
+    .modal-content {
+      background: white;
+      margin: 10% auto;
+      padding: 20px;
+      width: 80%;
+      max-width: 500px;
+      border-radius: 10px;
+      position: relative;
+    }
+
+    .close {
+      position: absolute;
+      right: 15px;
+      top: 10px;
+      font-size: 20px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .footer {
+    background-color: rgba(240, 230, 150, 0.5);
+    color:black;
+    text-align: center;
+    padding: 30px 20px;
+    margin-top: 40px;
+}
+
+.footer-content p {
+    margin: 5px 0;
+    font-size: 14px;
+    color: black
+}
+  </style>
+</head>
+<body>
+
+<nav class="menu">
+  <label>Hotel IXI</label>
+  <ul>
+    <li>
+      <a href="#">Tentang Kami</a>
+      <ul class="dropdown">
+        <li><a href="Profile.html">Profile</a></li>
+        <li><a href="Restoran.html">Restoran</a></li>
+        <li><a href="Fasilitas.html">Fasilitas</a></li>
+        <li><a href="Kontak.html">Kontak</a></li>
+      </ul>
+    </li>
+    <li><a href="Kamar.html">Kamar</a></li>
+    <li><a href="Event.html">Event</a></li>
+    <li><a href="Lokasi.html">Lokasi</a></li>
+    <li><a href="Profile-Programmer.html">Profile Programmer</a></li>
+  </ul>
+</nav>
+
+<div class="container">
+  <!-- Repeat this block for each room -->
+  <div class="container">
+  <!-- Superior Room -->
+  <div class="room-card">
+    <div class="carousel" id="carousel-superior">
+      <img src="img/super1.jpg" class="active" />
+      <img src="img/super2.jpg" />
+      <img src="img/super3.jpg" />
+      <img src="img/super4.jpg" />
+      <button class="prev" onclick="changeSlide('superior', -1)">❮</button>
+      <button class="next" onclick="changeSlide('superior', 1)">❯</button>
+    </div>
+    <div class="room-info">
+      <div class="room-title">Superior Room</div>
+      <div class="room-size">Room Size: 26 sqm</div>
+      <div class="room-price">IDR 632,846 net</div>
+      <div class="tax-note">Inclusive of taxes and service charge</div>
+      <a class="details-button" onclick="openModal('modal-superior')">More Details</a>
+      <a href="Reservasi.html" class="book-button">BOOK NOW</a>
+    </div>
+  </div>
+
+  <!-- Deluxe Room -->
+  <div class="room-card">
+    <div class="carousel" id="carousel-deluxe">
+      <img src="img/deluxe1.jpg" class="active" />
+      <img src="img/deluxe2.jpg" />
+      <img src="img/deluxe3.jpg" />
+      <img src="img/deluxe4.jpg" />
+      <button class="prev" onclick="changeSlide('deluxe', -1)">❮</button>
+      <button class="next" onclick="changeSlide('deluxe', 1)">❯</button>
+    </div>
+    <div class="room-info">
+      <div class="room-title">Deluxe Room</div>
+      <div class="room-size">Room Size: 31 sqm</div>
+      <div class="room-price">IDR 651,071 net</div>
+      <div class="tax-note">Inclusive of taxes and service charge</div>
+      <a class="details-button" onclick="openModal('modal-deluxe')">More Details</a>
+      <a href="Reservasi.html" class="book-button">BOOK NOW</a>
+    </div>
+  </div>
+
+  <!-- Family Room -->
+  <div class="room-card">
+    <div class="carousel" id="carousel-family">
+      <img src="img/family1.jpg" class="active" />
+      <img src="img/family2.jpg" />
+      <img src="img/family3.jpg" />
+      <img src="img/family4.jpg" />
+      <button class="prev" onclick="changeSlide('family', -1)">❮</button>
+      <button class="next" onclick="changeSlide('family', 1)">❯</button>
+    </div>
+    <div class="room-info">
+      <div class="room-title">Family Room</div>
+      <div class="room-size">Room Size: 33 sqm</div>
+      <div class="room-price">IDR 826,571 net</div>
+      <div class="tax-note">Inclusive of taxes and service charge</div>
+      <a class="details-button" onclick="openModal('modal-family')">More Details</a>
+      <a href="Reservasi.html" class="book-button">BOOK NOW</a>
+    </div>
+  </div>
+
+  <!-- Executive Room -->
+  <div class="room-card">
+    <div class="carousel" id="carousel-executive">
+      <img src="img/exe1.jpg" class="active" />
+      <img src="img/exe2.jpg" />
+      <img src="img/exe3.jpg" />
+      <img src="img/exe4.jpg" />
+      <button class="prev" onclick="changeSlide('executive', -1)">❮</button>
+      <button class="next" onclick="changeSlide('executive', 1)">❯</button>
+    </div>
+    <div class="room-info">
+      <div class="room-title">Executive Room</div>
+      <div class="room-size">Room Size: 58 sqm</div>
+      <div class="room-price">IDR 1,100,571 net</div>
+      <div class="tax-note">Inclusive of taxes and service charge</div>
+      <a class="details-button" onclick="openModal('modal-executive')">More Details</a>
+      <a href="Reservasi.html" class="book-button">BOOK NOW</a>
+    </div>
+  </div>
+</div>
+
+
+  <!-- Tambahkan room-card lainnya seperti di atas -->
+
+</div>
+
+<!-- Modal Section -->
+<div id="modal-superior" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('modal-superior')">&times;</span>
+    <h2>Superior Room</h2>
+    <p>Luas dan nyaman, Kamar Superior kami yang seluas 26 meter persegi adalah kamar hotel standar terbesar. Dilengkapi WiFi gratis, Smart TV, dan fasilitas pembuat kopi dan teh, kamar ini cocok untuk pelancong bisnis maupun rekreasi.</p>
+  </div>
+</div>
+
+<div id="modal-deluxe" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('modal-deluxe')">&times;</span>
+    <h2>Deluxe Room</h2>
+    <p>Dengan ruang tambahan untuk bersantai selama perjalanan bisnis atau liburan Anda di Batam, kamar Deluxe seluas 31 meter persegi kami memiliki semua fasilitas dalam kamar yang diharapkan dari hotel bintang 3 berstandar internasional.</p>
+  </div>
+</div>
+
+<div id="modal-family" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('modal-family')">&times;</span>
+    <h2>Family Room</h2>
+    <p>Sempurna bagi mereka yang bepergian dalam kelompok, bersama keluarga atau teman. Kamar Keluarga kami menawarkan kenyamanan, ruang, dan privasi, lengkap dengan fasilitas berstandar internasional, Smart TV, dapur kecil, kulkas mini, pengering rambut, ketel, dan brankas. Tersedia dengan pilihan tempat tidur queen dan satu tempat tidur single atau tempat tidur triple single.</p>
+  </div>
+</div>
+
+<div id="modal-executive" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('modal-executive')">&times;</span>
+    <h2>Executive Room</h2>
+    <p>Bersantailah dan segarkan diri dalam kenyamanan Executive Suite seluas 58 meter persegi yang elegan. Dilengkapi ruang tamu dan ruang makan terpisah, akses WiFi gratis, dan adaptor global untuk masa inap bisnis atau liburan yang menyenangkan.</p>
+  </div>
+</div>
+
+<!-- Tambahkan modal lainnya untuk deluxe, family, executive -->
+
+<script>
+  // Carousel functionality
+  const sliders = {
+    superior: { index: 0, slides: document.querySelectorAll('#carousel-superior img') },
+  };
+
+  function changeSlide(room, direction) {
+    const slider = sliders[room];
+    slider.slides[slider.index].classList.remove('active');
+    slider.index = (slider.index + direction + slider.slides.length) % slider.slides.length;
+    slider.slides[slider.index].classList.add('active');
+  }
+
+  // Modal functions
+  function openModal(id) {
+    document.getElementById(id).style.display = 'block';
+  }
+
+  function closeModal(id) {
+    document.getElementById(id).style.display = 'none';
+  }
+
+  // Close modal if click outside
+  window.onclick = function(event) {
+    const modals = document.querySelectorAll('.modal');
+    modals.forEach(modal => {
+      if (event.target === modal) {
+        modal.style.display = 'none';
+      }
+    });
+  };
+
+  window.onload = function() {
+    // Carousel
+    const sliders = {
+      superior: { index: 0, slides: document.querySelectorAll('#carousel-superior img') },
+      deluxe: { index: 0, slides: document.querySelectorAll('#carousel-deluxe img') },
+      family: { index: 0, slides: document.querySelectorAll('#carousel-family img') },
+      executive: { index: 0, slides: document.querySelectorAll('#carousel-executive img') }
+    };
+
+    window.changeSlide = function(room, direction) {
+      const slider = sliders[room];
+      if (!slider || !slider.slides.length) return;
+      slider.slides[slider.index].classList.remove('active');
+      slider.index = (slider.index + direction + slider.slides.length) % slider.slides.length;
+      slider.slides[slider.index].classList.add('active');
+    };
+
+    // Modal
+    window.openModal = function(id) {
+      document.getElementById(id).style.display = 'block';
+    };
+
+    window.closeModal = function(id) {
+      document.getElementById(id).style.display = 'none';
+    };
+
+    // Click outside to close modal
+    window.onclick = function(event) {
+      const modals = document.querySelectorAll('.modal');
+      modals.forEach(modal => {
+        if (event.target === modal) {
+          modal.style.display = 'none';
+        }
+      });
+    };
+  };
+
+
+</script>
+ <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2025 Hotel IXI. Semua Hak Dilindungi.</p>
+            <p>Alamat: Jl. PusatKotaRaya No.123, Nagoya</p>
+            <p>Email: info@ixihotel.com | Telepon: (0778) 123456</p>
+        </div>
+    </footer>
+
+</body>
+</html>

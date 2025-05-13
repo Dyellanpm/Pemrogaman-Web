@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Restoran - IXI Hotel</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url('img/lobby2.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        .menu {
+            background-color: rgba(0, 0, 0, 0.4);
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .menu label {
+            font-size: 20px;
+            font-weight: bold;
+            color: #f5e6ca;
+            font-family: 'Georgia', serif;
+        }
+
+        .menu ul {
+            list-style: none;
+            display: flex;
+            gap: 15px;
+            padding: 0;
+            margin: 0;
+        }
+
+        .menu ul li {
+            position: relative;
+        }
+
+        .menu ul li a {
+            color: #f5e6ca;
+            text-decoration: none;
+            padding: 8px 12px;
+            display: block;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            font-weight: bold;
+        }
+
+        .menu ul > li > a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: #ffd70f;
+        }
+
+        .dropdown {
+            display: none;
+            position: absolute;
+            top: calc(100% + 20px);
+            left: 0;
+            background-color: rgba(0, 0, 0, 0.6);
+            border-radius: 5px;
+            min-width: 160px;
+            z-index: 1000;
+            padding: 10px 0;
+            flex-direction: column;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .menu ul > li:hover .dropdown {
+            display: flex;
+            opacity: 1;
+        }
+
+        .dropdown li a {
+            padding: 10px 20px;
+            color: #ffffff;
+            text-decoration: none;
+            display: block;
+            transition: background-color 0.3s;
+            font-weight: normal;
+        }
+
+        .dropdown li a:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+            color: #ffd700;
+        }
+
+        @media (max-width: 768px) {
+            .menu {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .menu ul {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .menu ul > li {
+                width: 100%;
+            }
+
+            .menu ul > li > a {
+                width: 100%;
+            }
+
+            .dropdown {
+                position: static;
+                opacity: 1;
+                display: none;
+            }
+
+            .menu ul > li:hover .dropdown {
+                display: block;
+            }
+        }
+
+        .container {
+            padding: 20px;
+            max-width: 1200px;
+            margin: auto;
+            background: #FDFBD4;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            border-radius: 10px;
+            background-color: rgba(240, 230, 150, 0.5);
+
+        }
+
+        h1, p {
+            color: #000;
+        }
+
+        .restaurant-img {
+            width: 30%;
+            max-width: 300px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            margin: 10px auto;
+            display: block;
+
+        }
+
+        .restaurant-gallery {
+    display: flex;
+    flex-wrap: wrap; /* Agar gambar turun ke bawah jika tidak muat dalam satu baris */
+    justify-content: center; /* Agar gambar rata tengah */
+    gap: 1px; /* Jarak antar gambar */
+    padding: 20px;
+}
+
+.restaurant-img {
+    width: 30%;
+    max-width: 300px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    margin: 10px auto;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.restaurant-img:hover {
+    transform: scale(1.05); /* Efek saat hover */
+}
+
+.footer {
+    background-color: rgba(240, 230, 150, 0.5);
+    color:black;
+    text-align: center;
+    padding: 30px 20px;
+    margin-top: 40px;
+}
+
+.footer-content p {
+    margin: 5px 0;
+    font-size: 14px;
+    color: black
+}
+
+   
+
+    </style>
+</head>
+<body>
+
+    <!-- Navigasi -->
+    <nav class="menu">
+        <label>Hotel IXI</label>
+        <ul>
+            <li>
+                <a href="#">Tentang Kami</a>
+                <ul class="dropdown">
+                    <li><a href="Profile.html">Profile</a></li>
+                    <li><a href="Restoran.html">Restoran</a></li>
+                    <li><a href="Fasilitas.html">Fasilitas</a></li>
+                    <li><a href="Kontak.html">Kontak</a></li>
+                </ul>
+            </li>
+            <li><a href="Kamar.html">Kamar</a></li>
+            <li><a href="Event.html">Event</a></li>
+            <li><a href="Lokasi.html">Lokasi</a></li>
+            <li><a href="Profile-Programmer.html">Profile Programmer</a></li>
+        </ul>
+    </nav>
+
+    <!-- Konten Restoran -->
+    <div class="container">
+        <h1 style="text-align: center;">Restoran Hotel IXI</h1>
+        <p style="text-align: center; max-width: 800px; margin: 10px auto;">
+            Restoran kami menyajikan pengalaman kuliner terbaik dengan hidangan khas lokal dan internasional yang disiapkan oleh chef profesional.
+            Nikmati sarapan, makan siang, dan makan malam dalam suasana elegan dan nyaman.
+        </p>
+
+        <div class="restaurant-gallery">
+    <img src="img/resto1.jpg" alt="Restoran 1" class="restaurant-img">
+    <img src="img/resto2.jpg" alt="Restoran 2" class="restaurant-img">
+    <!-- Tambah gambar lainnya jika perlu -->
+</div>
+
+    </div>
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2025 Hotel IXI. Semua Hak Dilindungi.</p>
+            <p>Alamat: Jl. PusatKotaRaya No.123, Nagoya</p>
+            <p>Email: info@ixihotel.com | Telepon: (0778) 123456</p>
+        </div>
+    </footer>
+
+</body>
+</html>

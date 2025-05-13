@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Kontak - IXI Hotel</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url('img/lobby2.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        .menu {
+            background-color: rgba(0, 0, 0, 0.4);
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .menu label {
+            font-size: 20px;
+            font-weight: bold;
+            color: #f5e6ca;
+            font-family: 'Georgia', serif;
+        }
+
+        .menu ul {
+            list-style: none;
+            display: flex;
+            gap: 10px;
+            padding: 0;
+            margin: 0;
+        }
+
+        .menu ul li {
+            position: relative;
+        }
+
+        .menu ul li a {
+            color: #f5e6ca;
+            text-decoration: none;
+            padding: 8px 12px;
+            display: block;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            font-weight: bold;
+        }
+
+        .menu ul > li > a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: #ffd70f;
+        }
+
+        .dropdown {
+            display: none;
+            position: absolute;
+            top: calc(100% + 20px);
+            left: 0;
+            background-color: rgba(0, 0, 0, 0.6);
+            border-radius: 5px;
+            min-width: 160px;
+            z-index: 1000;
+            padding: 10px 0;
+            flex-direction: column;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .menu ul > li:hover .dropdown {
+            display: flex;
+            opacity: 1;
+        }
+
+        .dropdown li a {
+            padding: 10px 20px;
+            color: #ffffff;
+            text-decoration: none;
+            display: block;
+            transition: background-color 0.3s;
+        }
+
+        .dropdown li a:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+            color: #ffd700;
+        }
+
+        @media (max-width: 768px) {
+            .menu {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .menu ul {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .menu ul > li {
+                width: 100%;
+            }
+
+            .menu ul > li > a {
+                width: 100%;
+            }
+
+            .dropdown {
+                position: static;
+                opacity: 1;
+                display: none;
+            }
+
+            .menu ul > li:hover .dropdown {
+                display: block;
+            }
+        }
+
+        .contact-container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: rgba(240, 230, 150, 0.5);
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-container h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .contact-container p {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #444;
+        }
+
+        .contact-form label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #FDFBD4;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .btn-primary {
+            background-color: #ffd700;
+            color: #000;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            display: block;
+            margin: 0 auto;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #e6c200;
+        }
+
+        .contact-info {
+            margin-top: 40px;
+            border-top: 1px solid #ccc;
+            padding-top: 20px;
+            color: #333;
+        }
+       .footer {
+    background-color: rgba(240, 230, 150, 0.5);
+    color:black;
+    text-align: center;
+    padding: 30px 20px;
+    margin-top: 40px;
+}
+
+.footer-content p {
+    margin: 5px 0;
+    font-size: 14px;
+    color: black
+} 
+    </style>
+</head>
+<body>
+
+    <nav class="menu">
+        <label>Hotel IXI</label>
+        <ul>
+            <li>
+                <a href="#">Tentang Kami</a>
+                <ul class="dropdown">
+                    <li><a href="Profile.html">Profile</a></li>
+                    <li><a href="Restoran.html">Restoran</a></li>
+                    <li><a href="Fasilitas.html">Fasilitas</a></li>
+                    <li><a href="Kontak.html">Kontak</a></li>
+                </ul>
+            </li>
+            <li><a href="Kamar.html">Kamar</a></li>
+            <li><a href="Event.html">Event</a></li>
+            <li><a href="Lokasi.html">Lokasi</a></li>
+            <li><a href="Profile-Programmer.html">Profile Programmer</a></li>
+        </ul>
+    </nav>
+
+    <div class="contact-container">
+        <h2>Hubungi Kami</h2>
+        <p>Silakan hubungi kami jika ada pertanyaan, permintaan khusus, atau reservasi langsung.</p>
+
+        <form action="#" method="post" class="contact-form">
+            <label for="nama">Nama Lengkap:</label>
+            <input type="text" id="nama" name="nama" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="subjek">Subjek:</label>
+            <input type="text" id="subjek" name="subjek" required>
+
+            <label for="pesan">Pesan:</label>
+            <textarea id="pesan" name="pesan" rows="5" required></textarea>
+
+            <button type="submit" class="btn-primary">Kirim Pesan</button>
+        </form>
+
+        <div class="contact-info">
+            <h3>Alamat & Kontak</h3>
+            <p><strong>Alamat:</strong> Jl. PusatKotaRaya No.123, Nagoya</p>
+            <p><strong>Email:</strong> info@ixihotel.com</p>
+            <p><strong>Telepon:</strong> (0778) 123456</p>
+        </div>
+    </div>
+<footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2025 Hotel IXI. Semua Hak Dilindungi.</p>
+            <p>Alamat: Jl. PusatKotaRaya No.123, Nagoya</p>
+            <p>Email: info@ixihotel.com | Telepon: (0778) 123456</p>
+        </div>
+    </footer>
+
+</body>
+</html>
